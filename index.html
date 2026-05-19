@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Vaishali – Full Stack Web Developer portfolio."/>
+<meta property="og:title" content="Vaishali | Full Stack Web Developer"/>
+<title>Vaishali | Full Stack Web Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+  :root {
+    --black: #111110;
+    --white: #ffffff;
+    --beige: #e8ddd4;
+    --beige-dark: #ddd0c6;
+    --beige-light: #f0ebe5;
+    --text: #111110;
+    --text-soft: #555550;
+    --text-muted: #888880;
+    --border: #d8cfc6;
+    --radius: 12px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Comfortaa', cursive; background: var(--beige-light); color: var(--text); overflow-x: hidden; }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--beige-light); }
+  ::-webkit-scrollbar-thumb { background: var(--black); border-radius: 3px; }
+
+  /* NAVBAR */
+  .navbar {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--black);
+    padding: 0 48px; height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+    margin: 16px; border-radius: var(--radius);
+  }
+  .nav-name { font-size: 1rem; font-weight: 500; color: var(--white); letter-spacing: 0.3px; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { font-size: 0.88rem; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--white); }
+  .hamburger { display: none; background: none; border: none; color: var(--white); font-size: 1.2rem; cursor: pointer; }
+
+  /* PAGE */
+  .page { max-width: 1480px; margin: 0 auto; padding: 0 16px 16px; display: flex; flex-direction: column; gap: 12px; }
+
+  /* GRID ROWS */
+  .row { display: grid; gap: 12px; }
+  .row-2 { grid-template-columns: 1fr 1fr; }
+  .row-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .row-lheavy { grid-template-columns: 1.05fr 0.95fr; }
+  .row-rheavy { grid-template-columns: 0.95fr 1.05fr; }
+
+  .card { border-radius: var(--radius); overflow: hidden; }
+
+  /* ── HERO ── */
+  .hero-name-card {
+    background: var(--black); border-radius: var(--radius);
+    padding: 52px 52px 60px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    min-height: 340px;
+  }
+  .hero-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 7vw, 8rem);
+    font-weight: 300; line-height: 0.9;
+    color: var(--white); letter-spacing: -2px;
+  }
+  .hero-photo-card { border-radius: var(--radius); overflow: hidden; min-height: 340px; background: #b8a898; }
+  .photo-placeholder {
+    width: 100%; height: 100%; min-height: 340px;
+    background: linear-gradient(145deg, #c4b4a4 0%, #a89888 40%, #8a7868 100%);
+    display: flex; align-items: center; justify-content: center; position: relative;
+  }
+  .photo-placeholder svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .photo-initials {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 6rem; font-weight: 300; color: rgba(255,255,255,0.25);
+    position: relative; z-index: 1;
+  }
+  .tagline-card {
+    background: var(--beige); border-radius: var(--radius);
+    padding: 40px 48px; display: flex; align-items: center;
+  }
+  .tagline-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.4rem, 2.2vw, 2rem); font-weight: 400; line-height: 1.45; color: var(--text);
+  }
+  .cta-card {
+    background: var(--black); border-radius: var(--radius);
+    padding: 36px; display: flex; flex-direction: column; justify-content: center; gap: 16px;
+  }
+  .cta-label { font-size: 0.65rem; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+  .cta-btns { display: flex; flex-direction: column; gap: 10px; }
+  .cta-btn {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
+    color: var(--white); border-radius: 8px; padding: 11px 20px;
+    font-size: 0.84rem; font-weight: 400; cursor: pointer; text-decoration: none;
+    display: flex; align-items: center; gap: 10px; transition: background 0.2s;
+    font-family: 'Comfortaa', cursive;
+  }
+  .cta-btn:hover { background: rgba(255,255,255,0.16); }
+  .cta-btn.primary { background: var(--white); color: var(--black); border-color: var(--white); }
+  .cta-btn.primary:hover { background: var(--beige); }
+  .contact-pill {
+    background: var(--beige); border-radius: var(--radius);
+    padding: 28px 32px; display: flex; align-items: center; gap: 16px;
+  }
+  .cp-icon {
+    width: 44px; height: 44px; border-radius: 50%; background: var(--black);
+    display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 1rem; flex-shrink: 0;
+  }
+  .cp-label { font-size: 0.68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+  .cp-val { font-size: 0.88rem; font-weight: 500; color: var(--text); }
+  .cp-val a { color: inherit; text-decoration: none; }
+
+  /* MARQUEE */
+  .marquee-card {
+    background: var(--black); border-radius: var(--radius);
+    padding: 20px 0; overflow: hidden; position: relative;
+  }
+  .marquee-card::before, .marquee-card::after {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 1;
+  }
+  .marquee-card::before { left: 0; background: linear-gradient(to right, var(--black), transparent); }
+  .marquee-card::after { right: 0; background: linear-gradient(to left, var(--black), transparent); }
+  .marquee-track { display: flex; gap: 0; animation: marquee 30s linear infinite; width: max-content; }
+  .marquee-track:hover { animation-play-state: paused; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .m-item { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.4); font-size: 0.8rem; padding: 6px 20px; white-space: nowrap; }
+  .m-item i { color: rgba(255,255,255,0.2); font-size: 0.85rem; }
+  .m-dot { color: rgba(255,255,255,0.15); margin: 0 4px; }
+
+  /* STATS */
+  .stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+  .stat-card {
+    background: var(--black); border-radius: var(--radius);
+    padding: 40px 36px; text-align: center;
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4.5rem; font-weight: 300; color: var(--white); line-height: 1; margin-bottom: 8px;
+  }
+  .stat-lbl { font-size: 0.72rem; color: rgba(255,255,255,0.4); letter-spacing: 1.5px; text-transform: uppercase; }
+
+  /* SECTION HEADER */
+  .sec-header {
+    background: var(--black); border-radius: var(--radius);
+    padding: 44px 52px; display: flex; align-items: flex-end; min-height: 170px;
+  }
+  .sec-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.6rem, 4.5vw, 4.5rem);
+    font-weight: 300; color: var(--white); line-height: 1; letter-spacing: -1px;
+  }
+
+  /* ABOUT */
+  .about-card { background: var(--beige); border-radius: var(--radius); padding: 48px 52px; }
+  .about-body { font-size: 1rem; line-height: 1.88; color: var(--text-soft); font-weight: 300; }
+  .about-highlights { display: grid; grid-template-columns: 1fr 1fr; margin-top: 32px; border-top: 1px solid var(--border); }
+  .ahi {
+    padding: 18px 0; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .ahi:nth-child(odd) { padding-right: 24px; border-right: 1px solid var(--border); }
+  .ahi:nth-child(even) { padding-left: 24px; }
+  .ahi-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--black); flex-shrink: 0; }
+  .ahi-txt { font-size: 0.84rem; font-weight: 500; }
+
+  /* EXPERIENCE */
+  .exp-card { background: var(--beige); border-radius: var(--radius); padding: 48px 52px; }
+  .exp-item { padding: 32px 0; border-bottom: 1px solid var(--border); }
+  .exp-item:first-child { padding-top: 0; }
+  .exp-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .exp-role { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; font-weight: 500; color: var(--text); margin-bottom: 4px; letter-spacing: -0.3px; }
+  .exp-co { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2px; }
+  .exp-period { font-size: 0.76rem; color: var(--text-muted); margin-bottom: 16px; }
+  .exp-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .exp-list li { font-size: 0.86rem; line-height: 1.65; color: var(--text-soft); display: flex; align-items: flex-start; gap: 10px; }
+  .exp-list li::before { content: '•'; color: var(--text); flex-shrink: 0; margin-top: 1px; }
+  .exp-photo { border-radius: var(--radius); overflow: hidden; min-height: 100%; background: #9a8878; }
+  .exp-photo-inner {
+    width: 100%; min-height: 480px; height: 100%;
+    background: linear-gradient(160deg, #b4a494 0%, #948474 50%, #747464 100%);
+    display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;
+  }
+  .exp-photo-inner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.08) 0%, transparent 60%);
+  }
+  .exp-photo-lbl {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem; font-weight: 300; color: rgba(255,255,255,0.25);
+    position: relative; z-index:1; text-align: center; padding: 0 24px;
+    line-height: 1.5;
+  }
+
+  /* EDU CERTS */
+  .edu-certs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .ecc-card { background: var(--beige); border-radius: var(--radius); padding: 36px 40px; }
+  .ecc-heading { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; font-weight: 500; color: var(--text); margin-bottom: 22px; letter-spacing: -0.3px; }
+  .ecc-item { margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+  .ecc-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .ecc-title { font-size: 0.9rem; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+  .ecc-sub { font-size: 0.8rem; color: var(--text-muted); }
+  .ecc-detail { font-size: 0.76rem; color: var(--text-muted); padding-left: 10px; border-left: 2px solid var(--border); margin-top: 5px; }
+
+  /* SKILLS */
+  .skills-card { background: var(--beige); border-radius: var(--radius); padding: 44px 48px; }
+  .sg { margin-bottom: 28px; }
+  .sg:last-child { margin-bottom: 0; }
+  .sg-title { font-size: 0.65rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; font-weight: 500; }
+  .sg-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .sk-tag {
+    background: var(--white); border: 1px solid var(--border); border-radius: 6px;
+    padding: 7px 14px; font-size: 0.8rem; color: var(--text);
+    display: flex; align-items: center; gap: 7px;
+    transition: background 0.15s, color 0.15s, border-color 0.15s; cursor: default;
+  }
+  .sk-tag:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+  .sk-tag i { color: var(--text-muted); font-size: 0.85rem; }
+  .sk-tag:hover i { color: rgba(255,255,255,0.6); }
+
+  /* WHY */
+  .why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+  .why-card { background: var(--beige); border-radius: var(--radius); padding: 30px 28px; }
+  .why-card:nth-child(2), .why-card:nth-child(4), .why-card:nth-child(6) { background: var(--black); }
+  .why-card:nth-child(2) .why-title, .why-card:nth-child(2) .why-desc,
+  .why-card:nth-child(4) .why-title, .why-card:nth-child(4) .why-desc,
+  .why-card:nth-child(6) .why-title, .why-card:nth-child(6) .why-desc { color: rgba(255,255,255,0.75); }
+  .why-card:nth-child(2) .why-num, .why-card:nth-child(4) .why-num, .why-card:nth-child(6) .why-num { color: rgba(255,255,255,0.1); }
+  .why-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; font-weight: 300; color: rgba(0,0,0,0.1); line-height: 1; margin-bottom: 10px; }
+  .why-title { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .why-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.65; }
+
+  /* PROJECTS */
+  .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .proj-card { background: var(--beige); border-radius: var(--radius); padding: 36px 38px; transition: background 0.2s; }
+  .proj-card:hover { background: var(--beige-dark); }
+  .proj-num { font-family: 'Bebas Neue', sans-serif; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px; display: block; }
+  .proj-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; font-weight: 500; color: var(--text); margin-bottom: 10px; line-height: 1.2; letter-spacing: -0.3px; }
+  .proj-desc { font-size: 0.82rem; color: var(--text-soft); line-height: 1.7; margin-bottom: 14px; }
+  .proj-feats { list-style: none; margin-bottom: 16px; display: flex; flex-direction: column; gap: 4px; }
+  .proj-feats li { font-size: 0.78rem; color: var(--text-muted); display: flex; align-items: flex-start; gap: 8px; }
+  .proj-feats li::before { content: '–'; flex-shrink: 0; }
+  .proj-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+  .p-badge { font-size: 0.7rem; background: var(--black); color: var(--white); padding: 4px 11px; border-radius: 4px; }
+  .p-link {
+    font-size: 0.76rem; padding: 7px 16px; border-radius: 6px;
+    border: 1px solid var(--border); background: transparent; color: var(--text);
+    cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    font-family: 'Comfortaa', cursive;
+  }
+  .p-link:hover, .p-link.dark { background: var(--black); color: var(--white); border-color: var(--black); }
+
+  /* SERVICES */
+  .svc-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+  .svc-card { background: var(--beige); border-radius: var(--radius); padding: 30px 26px; transition: background 0.2s; }
+  .svc-card:hover { background: var(--beige-dark); }
+  .svc-icon { width: 44px; height: 44px; border-radius: 8px; background: var(--black); display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 1rem; margin-bottom: 16px; }
+  .svc-name { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 7px; }
+  .svc-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* CONTACT */
+  .contact-info-card { background: var(--black); border-radius: var(--radius); padding: 48px 44px; display: flex; flex-direction: column; gap: 24px; }
+  .ci-big { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; font-weight: 300; color: var(--white); letter-spacing: -0.5px; }
+  .ci-sub { font-size: 0.82rem; color: rgba(255,255,255,0.4); line-height: 1.7; margin-top: 4px; }
+  .ci-item { border-bottom: 1px solid rgba(255,255,255,0.07); padding-bottom: 20px; }
+  .ci-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .ci-lbl { font-size: 0.63rem; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.3); margin-bottom: 4px; }
+  .ci-val { font-size: 0.9rem; color: rgba(255,255,255,0.75); }
+  .ci-val a { color: inherit; text-decoration: none; }
+  .soc-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+  .soc-btn {
+    width: 38px; height: 38px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.14);
+    background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.55); font-size: 0.9rem; text-decoration: none; transition: background 0.2s;
+  }
+  .soc-btn:hover { background: var(--white); color: var(--black); }
+  .cf-card { background: var(--beige); border-radius: var(--radius); padding: 48px 52px; }
+  .cf-intro { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; font-weight: 400; color: var(--text); line-height: 1.5; margin-bottom: 30px; }
+  .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .cf-field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+  .cf-field label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); font-weight: 500; }
+  .cf-field input, .cf-field textarea {
+    background: var(--white); border: 1px solid var(--border); border-radius: 8px;
+    padding: 13px 16px; font-size: 0.86rem; color: var(--text);
+    font-family: 'Comfortaa', cursive; outline: none; transition: border-color 0.2s;
+  }
+  .cf-field input:focus, .cf-field textarea:focus { border-color: var(--black); }
+  .cf-field textarea { min-height: 120px; resize: vertical; }
+  .cf-submit {
+    background: var(--black); color: var(--white); border: none; border-radius: 8px;
+    padding: 13px 36px; font-size: 0.88rem; font-weight: 500; cursor: pointer;
+    font-family: 'Comfortaa', cursive; transition: background 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .cf-submit:hover { background: #333; }
+
+  /* FOOTER */
+  .footer-card { background: var(--black); border-radius: var(--radius); padding: 52px 52px 36px; }
+  .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 48px; }
+  .ft-brand { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; font-weight: 300; color: var(--white); letter-spacing: -0.5px; margin-bottom: 12px; }
+  .ft-tagline { font-size: 0.82rem; color: rgba(255,255,255,0.4); line-height: 1.7; max-width: 220px; margin-bottom: 20px; }
+  .ft-col-title { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 2.5px; color: rgba(255,255,255,0.3); margin-bottom: 18px; font-weight: 500; }
+  .ft-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .ft-links a { font-size: 0.83rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .ft-links a:hover { color: var(--white); }
+  .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  .ft-copy { font-size: 0.76rem; color: rgba(255,255,255,0.25); }
+  .ft-dl { background: var(--white); color: var(--black); border: none; border-radius: 6px; padding: 10px 22px; font-size: 0.82rem; font-weight: 500; cursor: pointer; font-family: 'Comfortaa', cursive; display: inline-flex; align-items: center; gap: 7px; text-decoration: none; transition: background 0.2s; }
+  .ft-dl:hover { background: var(--beige); }
+
+  /* MOBILE MENU */
+  .mm { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.65); }
+  .mm.open { display: flex; }
+  .mm-inner { width: 280px; background: var(--black); padding: 80px 32px 32px; height: 100%; display: flex; flex-direction: column; gap: 4px; animation: mmIn 0.28s ease; }
+  @keyframes mmIn { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+  .mm-close { position: absolute; top: 24px; right: 24px; background: none; border: none; color: rgba(255,255,255,0.6); font-size: 1.3rem; cursor: pointer; }
+  .mm-inner a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 1.05rem; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); transition: color 0.15s; }
+  .mm-inner a:hover { color: var(--white); }
+
+  /* REVEAL */
+  .rv { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .rv.vs { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 1100px) {
+    .svc-grid { grid-template-columns: repeat(2,1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+  @media (max-width: 860px) {
+    .navbar { margin: 8px; padding: 0 24px; }
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+    .row-2, .row-lheavy, .row-rheavy { grid-template-columns: 1fr; }
+    .edu-certs-grid, .why-grid, .stats-row, .proj-grid { grid-template-columns: 1fr 1fr; }
+    .svc-grid { grid-template-columns: 1fr 1fr; }
+    .hero-name { font-size: 3.5rem; }
+    .hero-name-card { min-height: 220px; padding: 36px 36px 44px; }
+    .sec-header { min-height: 110px; padding: 30px 36px; }
+    .exp-card, .about-card, .cf-card { padding: 32px 28px; }
+    .footer-top { grid-template-columns: 1fr; gap: 24px; }
+    .footer-card { padding: 36px 28px 24px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+    .page { padding: 0 8px 8px; gap: 8px; }
+  }
+  @media (max-width: 580px) {
+    .hero-name { font-size: 2.8rem; }
+    .edu-certs-grid, .why-grid, .proj-grid, .stats-row, .row-3 { grid-template-columns: 1fr; }
+    .svc-grid { grid-template-columns: 1fr 1fr; }
+    .about-highlights { grid-template-columns: 1fr; }
+    .ahi:nth-child(odd) { border-right: none; padding-right: 0; }
+    .ahi:nth-child(even) { padding-left: 0; }
+    .cf-row { grid-template-columns: 1fr; }
+    .contact-info-card { padding: 32px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MOBILE MENU -->
+<div class="mm" id="mm">
+  <div class="mm-inner">
+    <button class="mm-close" id="mmClose"><i class="fa-solid fa-xmark"></i></button>
+    <a href="#about" onclick="closeMM()">About</a>
+    <a href="#experience" onclick="closeMM()">Experience</a>
+    <a href="#edu-certs" onclick="closeMM()">Education</a>
+    <a href="#skills" onclick="closeMM()">Skills</a>
+    <a href="#projects" onclick="closeMM()">Projects</a>
+    <a href="#services" onclick="closeMM()">Services</a>
+    <a href="#contact" onclick="closeMM()">Contact</a>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="#" class="nav-name" style="text-decoration:none;color:#fff;">Vaishali</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#edu-certs">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="ham"><i class="fa-solid fa-bars"></i></button>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="row row-lheavy rv">
+    <div class="hero-name-card"><div style="color:#fff;font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;">Name</div><div class="hero-name">Vaishali</div></div>
+    <div class="hero-photo-card">
+      <img src="https://i.imgur.com/EJda1Jh.jpeg" alt="Vaishali" style="width:100%;height:100%;object-fit:cover;">
+    </div>
+  </div>
+
+  <div class="row row-2 rv">
+    <div class="tagline-card">
+      <div class="tagline-text">Full Stack Web Developer &amp; WordPress Specialist. Building modern, responsive, performance-driven web experiences.</div>
+    </div>
+    <div class="cta-card">
+      <div class="cta-label">Quick Actions</div>
+      <div class="cta-btns">
+        <a href="#projects" class="cta-btn primary"><i class="fa-solid fa-eye"></i>View Projects</a>
+        <a href="#" class="cta-btn"><i class="fa-solid fa-download"></i>Download Resume</a>
+        <a href="#contact" class="cta-btn"><i class="fa-solid fa-paper-plane"></i>Contact Me</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row row-3 rv">
+    <div class="contact-pill">
+      <div class="cp-icon"><i class="fa-solid fa-envelope"></i></div>
+      <div><div class="cp-label">Email</div><div class="cp-val"><a href="mailto:vaishalikumari1405@gmail.com">vaishalikumari1405@gmail.com</a></div></div>
+    </div>
+    <div class="contact-pill">
+      <div class="cp-icon"><i class="fa-solid fa-phone"></i></div>
+      <div><div class="cp-label">Phone</div><div class="cp-val"><a href="tel:6378021678">+91 6378021678</a></div></div>
+    </div>
+    <div class="contact-pill">
+      <div class="cp-icon"><i class="fa-solid fa-location-dot"></i></div>
+      <div><div class="cp-label">Location</div><div class="cp-val">Ajmer, Rajasthan, India</div></div>
+    </div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="marquee-card rv" id="marqCard"></div>
+
+  <!-- STATS -->
+  <div class="stats-row rv">
+    <div class="stat-card"><div class="stat-num" data-count="1">0</div><div class="stat-lbl">Year Experience</div></div>
+    <div class="stat-card"><div class="stat-num" data-count="6">0</div><div class="stat-lbl">Projects Delivered</div></div>
+    <div class="stat-card"><div class="stat-num" data-count="3">0</div><div class="stat-lbl">Companies Worked</div></div>
+  </div>
+
+  <!-- ABOUT -->
+  <div id="about" class="rv">
+    <div class="row row-2" style="margin-bottom:12px;">
+      <div class="sec-header"><div class="sec-title">About</div></div>
+      <div class="contact-pill" style="background:var(--beige-dark);">
+        <div>
+          <div class="cp-label" style="margin-bottom:8px;">Current Focus</div>
+          <div style="font-family:'Comfortaa',cursive;font-size:1.3rem;font-weight:500;color:var(--text);">Full Stack Web Developer</div>
+          <div style="font-size:0.8rem;color:var(--text-muted);margin-top:5px;">React.js · Node.js · WordPress · WooCommerce</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-card">
+      <p class="about-body">Enthusiastic and detail-oriented Web Developer with 1 year of hands-on experience designing, developing, and maintaining responsive websites for digital marketing agencies and tour &amp; travel companies. Skilled in frontend and backend development, responsive UI/UX, WordPress customization, WooCommerce development, REST API integration, SEO optimization, and website performance improvement. Passionate about clean code, scalable architecture, and innovative digital solutions.</p>
+      <div class="about-highlights">
+        <div class="ahi"><div class="ahi-dot"></div><div class="ahi-txt">1+ Year Practical Experience</div></div>
+        <div class="ahi"><div class="ahi-dot"></div><div class="ahi-txt">Responsive Website Development</div></div>
+        <div class="ahi"><div class="ahi-dot"></div><div class="ahi-txt">CRM Development Experience</div></div>
+        <div class="ahi"><div class="ahi-dot"></div><div class="ahi-txt">WooCommerce Expertise</div></div>
+        <div class="ahi"><div class="ahi-dot"></div><div class="ahi-txt">SEO Optimization</div></div>
+        <div class="ahi"><div class="ahi-dot"></div><div class="ahi-txt">REST API Integration</div></div>
+        <div class="ahi"><div class="ahi-dot"></div><div class="ahi-txt">Performance Optimization</div></div>
+        <div class="ahi"><div class="ahi-dot"></div><div class="ahi-txt">Agile Development</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div id="experience" class="rv">
+    <div class="sec-header" style="margin-bottom:12px;"><div class="sec-title">Experience</div></div>
+    <div class="row row-lheavy" style="align-items:start;">
+      <div class="exp-card">
+        <div class="exp-item">
+          <div class="exp-role">Web Developer</div>
+          <div class="exp-co">Takshila Design and Marketing</div>
+          <div class="exp-period">May 2025 – Feb 2026</div>
+          <ul class="exp-list">
+            <li>Developed and maintained WooCommerce eCommerce websites end-to-end</li>
+            <li>Configured product listings, categories, variations, and inventory management</li>
+            <li>Integrated payment gateways and shipping systems for seamless checkout</li>
+            <li>Customized WordPress themes and plugins for unique brand experiences</li>
+            <li>Managed backups, updates, and security optimization for site health</li>
+            <li>Optimized SEO and site performance for improved search rankings</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <div class="exp-role">Web Developer</div>
+          <div class="exp-co">Digitoria – Digital Marketing Agency</div>
+          <div class="exp-period">Oct 2024 – Mar 2025</div>
+          <ul class="exp-list">
+            <li>Developed responsive websites using HTML, CSS, and JavaScript</li>
+            <li>Collaborated with marketing teams for integrated SEO optimization</li>
+            <li>Customized WordPress themes and plugins to client specifications</li>
+            <li>Improved loading speed through performance optimization techniques</li>
+            <li>Worked with cPanel, domains, and hosting configuration</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <div class="exp-role">Web Developer</div>
+          <div class="exp-co">Valises Pour L'inde Tour and Travels</div>
+          <div class="exp-period">Jul 2024 – Oct 2024</div>
+          <ul class="exp-list">
+            <li>Built a custom CRM using React.js frontend and Node.js backend</li>
+            <li>Developed RESTful APIs for seamless data communication</li>
+            <li>Connected MySQL database for persistent data storage</li>
+            <li>Managed leads, bookings, and customer interactions within the CRM</li>
+            <li>Automated booking and follow-up processes for operational efficiency</li>
+            <li>Focused on responsive UI/UX design for intuitive admin experience</li>
+          </ul>
+        </div>
+      </div>
+      <div style="position:sticky;top:80px;">
+        <img src="https://i.postimg.cc/yN0PSSkR/Chat-GPT-Image-May-15-2026-07-48-11-PM.png" style="width:600px;max-width:100%;height:auto;border:5px solid #ddd0c6;border-radius:12px;">
+      </div>
+    </div>
+  </div>
+
+  <!-- EDUCATION & CERTS -->
+  <div id="edu-certs" class="rv">
+    <div class="sec-header" style="margin-bottom:12px;"><div class="sec-title">Education &amp; Certifications</div></div>
+    <div class="edu-certs-grid">
+      <div class="ecc-card">
+        <div class="ecc-heading">Education</div>
+        <div class="ecc-item">
+          <div class="ecc-title">B.Tech — Computer Science Engineering</div>
+          <div class="ecc-sub">Aryabhatta College of Engineering and Research Centre, Bikaner</div>
+          <div class="ecc-detail">CGPA: 7.97 / 10</div>
+        </div>
+        <div class="ecc-item">
+          <div class="ecc-title">Senior High School (12th)</div>
+          <div class="ecc-sub">MPGD Arya Girls Sr Sec School</div>
+          <div class="ecc-detail">Percentage: 70%</div>
+        </div>
+        <div class="ecc-item">
+          <div class="ecc-title">Secondary (10th)</div>
+          <div class="ecc-sub">Sent Teresa Sec School</div>
+          <div class="ecc-detail">Percentage: 87%</div>
+        </div>
+      </div>
+      <div class="ecc-card">
+        <div class="ecc-heading">Certifications</div>
+        <div class="ecc-item">
+          <div class="ecc-title">JavaScript</div>
+          <div class="ecc-sub">Great Learning</div>
+          <div class="ecc-detail">July 2024</div>
+        </div>
+        <div class="ecc-item">
+          <div class="ecc-title">Django Framework</div>
+          <div class="ecc-sub">Great Learning</div>
+          <div class="ecc-detail">July 2024</div>
+        </div>
+        <div class="ecc-item">
+          <div class="ecc-title">React.js</div>
+          <div class="ecc-sub">Great Learning</div>
+          <div class="ecc-detail">August 2024</div>
+        </div>
+        <div class="ecc-item">
+          <div class="ecc-title">Node.js</div>
+          <div class="ecc-sub">Great Learning</div>
+          <div class="ecc-detail">August 2024</div>
+        </div>
+      </div>
+      <div class="ecc-card">
+        <div class="ecc-heading">Internships</div>
+        <div class="ecc-item">
+          <div class="ecc-title">Web Developer</div>
+          <div class="ecc-sub">Digitoria – Digital Marketing Agency</div>
+          <div class="ecc-detail">Responsive websites, SEO optimization, WordPress customization</div>
+        </div>
+        <div class="ecc-item">
+          <div class="ecc-title">Web Developer</div>
+          <div class="ecc-sub">Valises Pour L'inde Tour and Travels</div>
+          <div class="ecc-detail">Custom CRM with React.js, Node.js, and MySQL</div>
+        </div>
+      </div>
+      <div class="ecc-card">
+        <div class="ecc-heading">Languages</div>
+        <div class="ecc-item">
+          <div class="ecc-title">Hindi</div>
+          <div class="ecc-detail">Native / Mother tongue</div>
+        </div>
+        <div class="ecc-item">
+          <div class="ecc-title">English</div>
+          <div class="ecc-detail">Professional working proficiency</div>
+        </div>
+        <div class="ecc-item">
+          <div class="ecc-title">Sanskrit</div>
+          <div class="ecc-detail">Elementary proficiency</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKILLS + WHY ME -->
+  <div id="skills" class="row row-2 rv" style="align-items:start;">
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="sec-header"><div class="sec-title">Skills</div></div>
+      <div class="skills-card">
+        <div class="sg">
+          <div class="sg-title">Frontend</div>
+          <div class="sg-tags">
+            <span class="sk-tag"><i class="fa-brands fa-html5"></i>HTML5</span>
+            <span class="sk-tag"><i class="fa-brands fa-css3-alt"></i>CSS3</span>
+            <span class="sk-tag"><i class="fa-brands fa-js"></i>JavaScript ES6+</span>
+            <span class="sk-tag"><i class="fa-brands fa-react"></i>React.js</span>
+            <span class="sk-tag"><i class="fa-brands fa-bootstrap"></i>Bootstrap</span>
+            <span class="sk-tag"><i class="fa-brands fa-js"></i>jQuery</span>
+          </div>
+        </div>
+        <div class="sg">
+          <div class="sg-title">Backend &amp; Database</div>
+          <div class="sg-tags">
+            <span class="sk-tag"><i class="fa-brands fa-node-js"></i>Node.js</span>
+            <span class="sk-tag"><i class="fa-solid fa-cube"></i>Express.js</span>
+            <span class="sk-tag"><i class="fa-solid fa-leaf"></i>MongoDB</span>
+            <span class="sk-tag"><i class="fa-solid fa-database"></i>MySQL</span>
+            <span class="sk-tag"><i class="fa-solid fa-database"></i>SQL</span>
+          </div>
+        </div>
+        <div class="sg">
+          <div class="sg-title">CMS &amp; eCommerce</div>
+          <div class="sg-tags">
+            <span class="sk-tag"><i class="fa-brands fa-wordpress"></i>WordPress</span>
+            <span class="sk-tag"><i class="fa-solid fa-cart-shopping"></i>WooCommerce</span>
+            <span class="sk-tag"><i class="fa-solid fa-graduation-cap"></i>LearnDash</span>
+            <span class="sk-tag"><i class="fa-solid fa-book"></i>Tutor LMS</span>
+          </div>
+        </div>
+        <div class="sg">
+          <div class="sg-title">Tools &amp; Other</div>
+          <div class="sg-tags">
+            <span class="sk-tag"><i class="fa-brands fa-git-alt"></i>Git</span>
+            <span class="sk-tag"><i class="fa-brands fa-github"></i>GitHub</span>
+            <span class="sk-tag"><i class="fa-solid fa-server"></i>cPanel</span>
+            <span class="sk-tag"><i class="fa-solid fa-plug"></i>REST APIs</span>
+            <span class="sk-tag"><i class="fa-solid fa-magnifying-glass"></i>SEO</span>
+            <span class="sk-tag"><i class="fa-brands fa-python"></i>Python</span>
+            <span class="sk-tag"><i class="fa-brands fa-java"></i>Java</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="sec-header"><div class="sec-title">Why Me</div></div>
+      <div class="why-grid">
+        <div class="why-card"><div class="why-num">01</div><div class="why-title">Problem-Solving</div><div class="why-desc">Analytical approach with effective, lasting solutions.</div></div>
+        <div class="why-card"><div class="why-num">02</div><div class="why-title">Performance-Focused</div><div class="why-desc">Every line optimized for speed and scalability.</div></div>
+        <div class="why-card"><div class="why-num">03</div><div class="why-title">SEO-Friendly Code</div><div class="why-desc">Semantic HTML ensuring great search rankings.</div></div>
+        <div class="why-card"><div class="why-num">04</div><div class="why-title">Responsive Design</div><div class="why-desc">Beautiful on every screen, every device.</div></div>
+        <div class="why-card"><div class="why-num">05</div><div class="why-title">Real Projects</div><div class="why-desc">3 companies, 6 live production deliveries.</div></div>
+        <div class="why-card"><div class="why-num">06</div><div class="why-title">Clean Code</div><div class="why-desc">Maintainable, structured, scalable architecture.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div id="projects" class="rv">
+    <div class="sec-header" style="margin-bottom:12px;"><div class="sec-title">Projects</div></div>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <span class="proj-num">01 / 06</span>
+        <div class="proj-name">SEO Optimized Landing Page</div>
+        <div class="proj-desc">High-converting marketing landing page with advanced analytics and full SEO optimization.</div>
+        <ul class="proj-feats">
+          <li>Mobile-first responsive design with fast loading</li>
+          <li>Google Analytics &amp; Facebook Pixel integration</li>
+          <li>Event tracking for conversion campaigns</li>
+        </ul>
+        <div class="proj-stack"><span class="p-badge">HTML</span><span class="p-badge">CSS</span><span class="p-badge">JavaScript</span><span class="p-badge">Analytics</span></div>
+        
+      </div>
+      <div class="proj-card">
+        <span class="proj-num">02 / 06</span>
+        <div class="proj-name">CRM for Tour &amp; Travel Agency</div>
+        <div class="proj-desc">Custom CRM platform for managing leads, bookings, and customer interactions.</div>
+        <ul class="proj-feats">
+          <li>Lead and booking management system</li>
+          <li>REST API with responsive admin dashboard</li>
+          <li>Automated workflows and follow-up processes</li>
+        </ul>
+        <div class="proj-stack"><span class="p-badge">React.js</span><span class="p-badge">Node.js</span><span class="p-badge">Express.js</span><span class="p-badge">MongoDB</span></div>
+        
+      </div>
+      <div class="proj-card">
+        <span class="proj-num">03 / 06</span>
+        <div class="proj-name">WooCommerce eCommerce Store</div>
+        <div class="proj-desc">Complete WooCommerce platform with payment integration and inventory management.</div>
+        <ul class="proj-feats">
+          <li>Product catalog with variations and inventory</li>
+          <li>Payment gateway and shipping configuration</li>
+          <li>SEO-optimized product structure</li>
+        </ul>
+        <div class="proj-stack"><span class="p-badge">WordPress</span><span class="p-badge">WooCommerce</span></div>
+        
+      </div>
+      <div class="proj-card">
+        <span class="proj-num">04 / 06</span>
+        <div class="proj-name">Online Book Selling Website</div>
+        <div class="proj-desc">WooCommerce-powered bookstore with inventory and order management.</div>
+        <ul class="proj-feats">
+          <li>Book catalog with category management</li>
+          <li>Payment integration and order management</li>
+          <li>Responsive, user-friendly UI</li>
+        </ul>
+        <div class="proj-stack"><span class="p-badge">WordPress</span><span class="p-badge">WooCommerce</span></div>
+        
+      </div>
+      <div class="proj-card">
+        <span class="proj-num">05 / 06</span>
+        <div class="proj-name">Learning Management System</div>
+        <div class="proj-desc">LMS-based educational platform with course delivery and progress tracking.</div>
+        <ul class="proj-feats">
+          <li>Course creation and student enrollment</li>
+          <li>Progress tracking and LMS customization</li>
+          <li>Responsive design for all devices</li>
+        </ul>
+        <div class="proj-stack"><span class="p-badge">WordPress</span><span class="p-badge">LearnDash</span><span class="p-badge">Tutor LMS</span></div>
+        
+      </div>
+      <div class="proj-card">
+        <span class="proj-num">06 / 06</span>
+        <div class="proj-name">Panorama Property Website</div>
+        <div class="proj-desc">Real estate website with 360° panoramic property viewing and lead capture.</div>
+        <ul class="proj-feats">
+          <li>Virtual 360° property tours</li>
+          <li>Property listings with inquiry forms</li>
+          <li>SEO-optimized responsive structure</li>
+        </ul>
+        <div class="proj-stack"><span class="p-badge">WordPress</span></div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div id="services" class="rv">
+    <div class="sec-header" style="margin-bottom:12px;"><div class="sec-title">Services</div></div>
+    <div class="svc-grid">
+      <div class="svc-card"><div class="svc-icon"><i class="fa-solid fa-palette"></i></div><div class="svc-name">Frontend Development</div><div class="svc-desc">Pixel-perfect UIs with React.js, HTML, CSS, and JavaScript.</div></div>
+      <div class="svc-card"><div class="svc-icon"><i class="fa-solid fa-layer-group"></i></div><div class="svc-name">Full Stack Development</div><div class="svc-desc">End-to-end apps with Node.js, Express, and MongoDB.</div></div>
+      <div class="svc-card"><div class="svc-icon"><i class="fa-brands fa-wordpress"></i></div><div class="svc-name">WordPress Development</div><div class="svc-desc">Custom themes, plugins, and WordPress solutions.</div></div>
+      <div class="svc-card"><div class="svc-icon"><i class="fa-solid fa-cart-shopping"></i></div><div class="svc-name">WooCommerce</div><div class="svc-desc">Complete eCommerce with payments and inventory.</div></div>
+      <div class="svc-card"><div class="svc-icon"><i class="fa-solid fa-magnifying-glass"></i></div><div class="svc-name">SEO Optimization</div><div class="svc-desc">On-page SEO, performance tuning, better rankings.</div></div>
+      <div class="svc-card"><div class="svc-icon"><i class="fa-solid fa-mobile-screen-button"></i></div><div class="svc-name">Responsive Design</div><div class="svc-desc">Mobile-first, cross-device optimized websites.</div></div>
+      <div class="svc-card"><div class="svc-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div><div class="svc-name">Website Maintenance</div><div class="svc-desc">Updates, security, backups, and ongoing support.</div></div>
+      <div class="svc-card"><div class="svc-icon"><i class="fa-solid fa-plug"></i></div><div class="svc-name">API Integration</div><div class="svc-desc">REST API connections and third-party integrations.</div></div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div id="contact" class="rv">
+    <div class="sec-header" style="margin-bottom:12px;"><div class="sec-title">Contact</div></div>
+    <div class="row row-rheavy" style="align-items:start;">
+      <div class="contact-info-card">
+        <div>
+          <div class="ci-big">Let's Work Together</div>
+          <div class="ci-sub">Open to freelance projects, full-time roles, and collaboration.</div>
+        </div>
+        <div class="ci-item"><div class="ci-lbl">Email</div><div class="ci-val"><a href="mailto:vaishalikumari1405@gmail.com">vaishalikumari1405@gmail.com</a></div></div>
+        <div class="ci-item"><div class="ci-lbl">Phone</div><div class="ci-val"><a href="tel:6378021678">+91 6378021678</a></div></div>
+        <div class="ci-item"><div class="ci-lbl">Location</div><div class="ci-val">Ajmer, Rajasthan, India</div></div>
+        <div class="ci-item">
+          <div class="ci-lbl">Profiles</div>
+          <div class="soc-row">
+            <a href="#" class="soc-btn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" class="soc-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="soc-btn" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="mailto:vaishalikumari1405@gmail.com" class="soc-btn" title="Email"><i class="fa-solid fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="cf-card">
+        <div class="cf-intro">Have a project in mind or want to discuss an opportunity?</div>
+        <div class="cf-row">
+          <div class="cf-field"><label>First Name</label><input type="text" placeholder="Your first name"/></div>
+          <div class="cf-field"><label>Last Name</label><input type="text" placeholder="Your last name"/></div>
+        </div>
+        <div class="cf-field"><label>Email Address</label><input type="email" placeholder="your@email.com"/></div>
+        <div class="cf-field"><label>Subject</label><input type="text" placeholder="Project inquiry, collaboration..."/></div>
+        <div class="cf-field"><label>Message</label><textarea placeholder="Tell me about your project..."></textarea></div>
+        <button class="cf-submit"><i class="fa-solid fa-paper-plane"></i>Send Message</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-card rv">
+    <div class="footer-top">
+      <div>
+        <div class="ft-brand">Vaishali</div>
+        <div class="ft-tagline">Full Stack Web Developer building modern, responsive web experiences from Ajmer, Rajasthan.</div>
+        <div class="soc-row">
+          <a href="#" class="soc-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="soc-btn"><i class="fa-brands fa-github"></i></a>
+          <a href="#" class="soc-btn"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="mailto:vaishalikumari1405@gmail.com" class="soc-btn"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="ft-col-title">Navigation</div>
+        <ul class="ft-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#edu-certs">Education</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ft-col-title">Services</div>
+        <ul class="ft-links">
+          <li><a href="#services">Frontend Development</a></li>
+          <li><a href="#services">Full Stack Development</a></li>
+          <li><a href="#services">WordPress</a></li>
+          <li><a href="#services">WooCommerce</a></li>
+          <li><a href="#services">SEO Optimization</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ft-col-title">Contact</div>
+        <ul class="ft-links">
+          <li><a href="mailto:vaishalikumari1405@gmail.com">vaishalikumari1405@gmail.com</a></li>
+          <li><a href="tel:6378021678">+91 6378021678</a></li>
+          <li><a href="#contact">Send a Message</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="ft-copy">© 2026 Vaishali. All rights reserved.</div>
+      <a href="" class="ft-dl"><i class="fa-solid fa-download"></i>Download Resume</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// HAMBURGER
+const ham = document.getElementById('ham');
+const mm = document.getElementById('mm');
+const mmClose = document.getElementById('mmClose');
+ham.addEventListener('click', () => mm.classList.add('open'));
+mmClose.addEventListener('click', () => mm.classList.remove('open'));
+mm.addEventListener('click', e => { if (e.target === mm) mm.classList.remove('open'); });
+function closeMM() { mm.classList.remove('open'); }
+
+// SCROLL REVEAL
+const rvObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vs'); });
+}, { threshold: 0.07 });
+document.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
+
+// COUNTERS
+const cObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target, target = parseInt(el.dataset.count);
+      let n = 0;
+      const t = setInterval(() => {
+        n += Math.ceil(target / 30);
+        if (n >= target) { el.textContent = target + '+'; clearInterval(t); }
+        else { el.textContent = n + '+'; }
+      }, 50);
+      cObs.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => cObs.observe(el));
+
+// MARQUEE
+const techs = [
+  ['fa-brands fa-html5','HTML5'], ['fa-brands fa-css3-alt','CSS3'],
+  ['fa-brands fa-js','JavaScript'], ['fa-brands fa-react','React.js'],
+  ['fa-brands fa-node-js','Node.js'], ['fa-solid fa-cube','Express.js'],
+  ['fa-brands fa-wordpress','WordPress'], ['fa-solid fa-cart-shopping','WooCommerce'],
+  ['fa-solid fa-leaf','MongoDB'], ['fa-solid fa-database','MySQL'],
+  ['fa-brands fa-git-alt','Git'], ['fa-brands fa-python','Python'],
+  ['fa-solid fa-magnifying-glass','SEO'], ['fa-solid fa-plug','REST API'],
+  ['fa-brands fa-bootstrap','Bootstrap'], ['fa-solid fa-gauge-high','Performance'],
+];
+const mc = document.getElementById('marqCard');
+const track = document.createElement('div');
+track.className = 'marquee-track';
+[...techs, ...techs].forEach(([icon, name]) => {
+  const d = document.createElement('div');
+  d.className = 'm-item';
+  d.innerHTML = `<i class="${icon}"></i>${name}<span class="m-dot">·</span>`;
+  track.appendChild(d);
+});
+mc.appendChild(track);
+</script>
+</body>
+</html>
