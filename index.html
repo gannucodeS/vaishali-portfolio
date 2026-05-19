@@ -34,12 +34,13 @@
     position: sticky; top: 0; z-index: 100;
     background: var(--black);
     padding: 0 48px; height: 64px;
-    display: flex; align-items: center; justify-content: space-between;
+    display: flex; align-items: center;
+    gap: 16px;
     margin: 16px; border-radius: var(--radius);
   }
-  .nav-name { font-size: 1rem; font-weight: 500; color: var(--white); letter-spacing: 0.3px; }
-  .nav-links { display: flex; gap: 32px; list-style: none; }
-  .nav-links a { font-size: 0.88rem; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s; }
+  .nav-name { font-size: 1rem; font-weight: 500; color: var(--white); letter-spacing: 0.3px; margin-right: auto; }
+  .nav-links { display: flex; gap: 24px; list-style: none; margin-right: auto; }
+  .nav-links a { font-size: 0.82rem; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--white); }
   .hamburger { display: none; background: none; border: none; color: var(--white); font-size: 1.2rem; cursor: pointer; }
   .nav-dl-mobile { display: none; background: none; border: none; color: var(--white); font-size: 1.2rem; cursor: pointer; text-decoration: none; }
@@ -329,6 +330,47 @@
   .rv { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
   .rv.vs { opacity: 1; transform: translateY(0); }
 
+  /* ANIMATION VARIANTS */
+  .rv-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .rv-up.vs { opacity: 1; transform: translateY(0); }
+  .rv-scale { opacity: 0; transform: scale(0.85); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .rv-scale.vs { opacity: 1; transform: scale(1); }
+  .rv-left { opacity: 0; transform: translateX(30px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .rv-left.vs { opacity: 1; transform: translateX(0); }
+  .rv-right { opacity: 0; transform: translateX(-30px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .rv-right.vs { opacity: 1; transform: translateX(0); }
+  .rv-clip { opacity: 0; clip-path: inset(0 100% 0 0); transition: opacity 0.8s ease, clip-path 0.8s ease; }
+  .rv-clip.vs { opacity: 1; clip-path: inset(0 0 0 0); }
+
+  /* STAGGER CHILDREN */
+  .rv-stagger > * { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .rv-stagger.vs > * { opacity: 1; transform: translateY(0); }
+  .rv-stagger > *:nth-child(1) { transition-delay: 0.05s; }
+  .rv-stagger > *:nth-child(2) { transition-delay: 0.1s; }
+  .rv-stagger > *:nth-child(3) { transition-delay: 0.15s; }
+  .rv-stagger > *:nth-child(4) { transition-delay: 0.2s; }
+  .rv-stagger > *:nth-child(5) { transition-delay: 0.25s; }
+  .rv-stagger > *:nth-child(6) { transition-delay: 0.3s; }
+  .rv-stagger > *:nth-child(7) { transition-delay: 0.35s; }
+  .rv-stagger > *:nth-child(8) { transition-delay: 0.4s; }
+
+  /* TYPEWRITER */
+  .tw-cursor { animation: tw-blink 0.7s step-end infinite; margin-left: 2px; }
+  @keyframes tw-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+  /* HOVER ANIMATIONS */
+  .proj-card, .svc-card, .why-card, .ecc-card, .about-card, .contact-pill {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s;
+  }
+  .proj-card:hover, .svc-card:hover, .why-card:hover, .ecc-card:hover, .about-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  .contact-pill:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+
   /* RESPONSIVE */
   @media (max-width: 1100px) {
     .svc-grid { grid-template-columns: repeat(2,1fr); }
@@ -403,10 +445,40 @@
 
   <!-- HERO -->
   <div class="row row-lheavy rv">
-    <div class="hero-name-card"><div style="color:#fff;font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;">Name</div><div class="hero-name">Vaishali</div></div>
-    <div class="hero-photo-card">
+    <div class="hero-name-card"><div style="color:#fff;font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;"><span id="tw-text"></span><span class="tw-cursor">|</span></div><div class="hero-name rv-scale">Vaishali</div></div>
+    <div class="hero-photo-card rv-right">
       <img src="https://i.imgur.com/EJda1Jh.jpeg" alt="Vaishali" style="width:100%;height:100%;object-fit:cover;">
     </div>
+  </div>
+
+  <div class="row row-2">
+    <div class="tagline-card rv-clip">
+      <div class="tagline-text">Full Stack Web Developer &amp; WordPress Specialist. Building modern, responsive, performance-driven web experiences.</div>
+    </div>
+    <div class="cta-card rv-up">
+      <div class="cta-label">Quick Actions</div>
+      <div class="cta-btns">
+        <a href="#projects" class="cta-btn primary"><i class="fa-solid fa-eye"></i>View Projects</a>
+        <a href="#" class="cta-btn"><i class="fa-solid fa-download"></i>Download Resume</a>
+        <a href="#contact" class="cta-btn"><i class="fa-solid fa-paper-plane"></i>Contact Me</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row row-3 rv-stagger">
+    <div class="contact-pill">
+      <div class="cp-icon"><i class="fa-solid fa-envelope"></i></div>
+      <div><div class="cp-label">Email</div><div class="cp-val"><a href="mailto:vaishalikumari1405@gmail.com">vaishalikumari1405@gmail.com</a></div></div>
+    </div>
+    <div class="contact-pill">
+      <div class="cp-icon"><i class="fa-solid fa-phone"></i></div>
+      <div><div class="cp-label">Phone</div><div class="cp-val"><a href="tel:6378021678">+91 6378021678</a></div></div>
+    </div>
+    <div class="contact-pill">
+      <div class="cp-icon"><i class="fa-solid fa-location-dot"></i></div>
+      <div><div class="cp-label">Location</div><div class="cp-val">Ajmer, Rajasthan, India</div></div>
+    </div>
+  </div>
   </div>
 
   <div class="row row-2 rv">
@@ -442,14 +514,14 @@
   <div class="marquee-card rv" id="marqCard"></div>
 
   <!-- STATS -->
-  <div class="stats-row rv">
-    <div class="stat-card"><div class="stat-num" data-count="1">0</div><div class="stat-lbl">Year Experience</div></div>
-    <div class="stat-card"><div class="stat-num" data-count="6">0</div><div class="stat-lbl">Projects Delivered</div></div>
-    <div class="stat-card"><div class="stat-num" data-count="3">0</div><div class="stat-lbl">Companies Worked</div></div>
+  <div class="stats-row">
+    <div class="stat-card rv-scale"><div class="stat-num" data-count="1">0</div><div class="stat-lbl">Year Experience</div></div>
+    <div class="stat-card rv-scale"><div class="stat-num" data-count="6">0</div><div class="stat-lbl">Projects Delivered</div></div>
+    <div class="stat-card rv-scale"><div class="stat-num" data-count="3">0</div><div class="stat-lbl">Companies Worked</div></div>
   </div>
 
   <!-- ABOUT -->
-  <div id="about" class="rv">
+  <div id="about" class="rv-up">
     <div class="row row-2" style="margin-bottom:12px;">
       <div class="sec-header"><div class="sec-title">About</div></div>
       <div class="contact-pill" style="background:var(--beige-dark);">
@@ -461,8 +533,8 @@
       </div>
     </div>
     <div class="about-card">
-      <p class="about-body">Enthusiastic and detail-oriented Web Developer with 1 year of hands-on experience designing, developing, and maintaining responsive websites for digital marketing agencies and tour &amp; travel companies. Skilled in frontend and backend development, responsive UI/UX, WordPress customization, WooCommerce development, REST API integration, SEO optimization, and website performance improvement. Passionate about clean code, scalable architecture, and innovative digital solutions.</p>
-      <div class="about-highlights">
+      <p class="about-body rv-up">Enthusiastic and detail-oriented Web Developer with 1 year of hands-on experience designing, developing, and maintaining responsive websites for digital marketing agencies and tour &amp; travel companies. Skilled in frontend and backend development, responsive UI/UX, WordPress customization, WooCommerce development, REST API integration, SEO optimization, and website performance improvement. Passionate about clean code, scalable architecture, and innovative digital solutions.</p>
+      <div class="about-highlights rv-stagger">
         <div class="ahi"><div class="ahi-dot"></div><div class="ahi-txt">1+ Year Practical Experience</div></div>
         <div class="ahi"><div class="ahi-dot"></div><div class="ahi-txt">Responsive Website Development</div></div>
         <div class="ahi"><div class="ahi-dot"></div><div class="ahi-txt">CRM Development Experience</div></div>
@@ -476,7 +548,7 @@
   </div>
 
   <!-- EXPERIENCE -->
-  <div id="experience" class="rv">
+  <div id="experience" class="rv-up">
     <div class="sec-header" style="margin-bottom:12px;"><div class="sec-title">Experience</div></div>
     <div class="row row-lheavy" style="align-items:start;">
       <div class="exp-card">
@@ -519,16 +591,16 @@
           </ul>
         </div>
       </div>
-      <div style="position:sticky;top:80px;">
+      <div class="rv-left" style="position:sticky;top:80px;">
         <img src="https://i.postimg.cc/yN0PSSkR/Chat-GPT-Image-May-15-2026-07-48-11-PM.png" style="width:600px;max-width:100%;height:auto;border:5px solid #ddd0c6;border-radius:12px;">
       </div>
     </div>
   </div>
 
   <!-- EDUCATION & CERTS -->
-  <div id="edu-certs" class="rv">
+  <div id="edu-certs" class="rv-up">
     <div class="sec-header" style="margin-bottom:12px;"><div class="sec-title">Education &amp; Certifications</div></div>
-    <div class="edu-certs-grid">
+    <div class="edu-certs-grid rv-stagger">
       <div class="ecc-card">
         <div class="ecc-heading">Education</div>
         <div class="ecc-item">
@@ -602,7 +674,7 @@
   </div>
 
   <!-- SKILLS + WHY ME -->
-  <div id="skills" class="row row-2 rv" style="align-items:start;">
+  <div id="skills" class="row row-2 rv-up" style="align-items:start;">
     <div style="display:flex;flex-direction:column;gap:12px;">
       <div class="sec-header"><div class="sec-title">Skills</div></div>
       <div class="skills-card">
@@ -664,9 +736,9 @@
   </div>
 
   <!-- PROJECTS -->
-  <div id="projects" class="rv">
+  <div id="projects" class="rv-up">
     <div class="sec-header" style="margin-bottom:12px;"><div class="sec-title">Projects</div></div>
-    <div class="proj-grid">
+    <div class="proj-grid rv-stagger">
       <div class="proj-card">
         <span class="proj-num">01 / 06</span>
         <div class="proj-name">SEO Optimized Landing Page</div>
@@ -743,9 +815,9 @@
   </div>
 
   <!-- SERVICES -->
-  <div id="services" class="rv">
+  <div id="services" class="rv-up">
     <div class="sec-header" style="margin-bottom:12px;"><div class="sec-title">Services</div></div>
-    <div class="svc-grid">
+    <div class="svc-grid rv-stagger">
       <div class="svc-card"><div class="svc-icon"><i class="fa-solid fa-palette"></i></div><div class="svc-name">Frontend Development</div><div class="svc-desc">Pixel-perfect UIs with React.js, HTML, CSS, and JavaScript.</div></div>
       <div class="svc-card"><div class="svc-icon"><i class="fa-solid fa-layer-group"></i></div><div class="svc-name">Full Stack Development</div><div class="svc-desc">End-to-end apps with Node.js, Express, and MongoDB.</div></div>
       <div class="svc-card"><div class="svc-icon"><i class="fa-brands fa-wordpress"></i></div><div class="svc-name">WordPress Development</div><div class="svc-desc">Custom themes, plugins, and WordPress solutions.</div></div>
@@ -758,7 +830,7 @@
   </div>
 
   <!-- CONTACT -->
-  <div id="contact" class="rv">
+  <div id="contact" class="rv-up">
     <div class="sec-header" style="margin-bottom:12px;"><div class="sec-title">Contact</div></div>
     <div class="row row-rheavy" style="align-items:start;">
       <div class="contact-info-card">
@@ -779,7 +851,7 @@
           </div>
         </div>
       </div>
-      <div class="cf-card">
+      <div class="cf-card rv-right">
         <div class="cf-intro">Have a project in mind or want to discuss an opportunity?</div>
         <div class="cf-row">
           <div class="cf-field"><label>First Name</label><input type="text" placeholder="Your first name"/></div>
@@ -794,7 +866,7 @@
   </div>
 
   <!-- FOOTER -->
-  <div class="footer-card rv">
+  <div class="footer-card rv-up">
     <div class="footer-top">
       <div>
         <div class="ft-brand">Vaishali</div>
@@ -857,7 +929,33 @@ function closeMM() { mm.classList.remove('open'); }
 const rvObs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vs'); });
 }, { threshold: 0.07 });
-document.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
+document.querySelectorAll('.rv, .rv-up, .rv-scale, .rv-left, .rv-right, .rv-clip').forEach(el => rvObs.observe(el));
+document.querySelectorAll('.rv-stagger').forEach(el => rvObs.observe(el));
+
+// TYPEWRITER
+const twText = "Web Developer";
+const twEl = document.getElementById('tw-text');
+if (twEl) {
+  let twIdx = 0, twDeleting = false;
+  const twObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const twInt = setInterval(() => {
+          if (!twDeleting) {
+            twEl.textContent = twText.substring(0, twIdx + 1);
+            twIdx++;
+            if (twIdx === twText.length) setTimeout(() => twDeleting = true, 2000);
+          } else {
+            twEl.textContent = twText.substring(0, twIdx - 1);
+            twIdx--;
+            if (twIdx === 0) twDeleting = false;
+          }
+        }, twDeleting ? 60 : 100);
+      }
+    });
+  }, { threshold: 0.5 });
+  twObs.observe(document.querySelector('.hero-name-card'));
+}
 
 // COUNTERS
 const cObs = new IntersectionObserver(entries => {
