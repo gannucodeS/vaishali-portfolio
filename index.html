@@ -42,6 +42,7 @@
   .nav-links a { font-size: 0.88rem; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--white); }
   .hamburger { display: none; background: none; border: none; color: var(--white); font-size: 1.2rem; cursor: pointer; }
+  .nav-dl-mobile { display: none; background: none; border: none; color: var(--white); font-size: 1.2rem; cursor: pointer; text-decoration: none; }
 
   /* PAGE */
   .page { max-width: 1480px; margin: 0 auto; padding: 0 16px 16px; display: flex; flex-direction: column; gap: 12px; }
@@ -337,6 +338,7 @@
     .navbar { margin: 8px; padding: 0 24px; }
     .nav-links { display: none; }
     .hamburger { display: block; }
+    .nav-dl-mobile { display: flex; align-items: center; justify-content: center; }
     .row-2, .row-lheavy, .row-rheavy { grid-template-columns: 1fr; }
     .edu-certs-grid, .why-grid, .stats-row, .proj-grid { grid-template-columns: 1fr 1fr; }
     .svc-grid { grid-template-columns: 1fr 1fr; }
@@ -367,6 +369,7 @@
 <div class="mm" id="mm">
   <div class="mm-inner">
     <button class="mm-close" id="mmClose"><i class="fa-solid fa-xmark"></i></button>
+    <a href="https://drive.google.com/uc?export=download&id=14yehXItlTRZDkx9dqtsMsFUHMVZfj38s" download onclick="closeMM()"><i class="fa-solid fa-download"></i> Download Resume</a>
     <a href="#about" onclick="closeMM()">About</a>
     <a href="#experience" onclick="closeMM()">Experience</a>
     <a href="#edu-certs" onclick="closeMM()">Education</a>
@@ -381,6 +384,7 @@
 <nav class="navbar">
   <a href="#" class="nav-name" style="text-decoration:none;color:#fff;">Vaishali</a>
   <ul class="nav-links">
+    <li><a href="https://drive.google.com/uc?export=download&id=14yehXItlTRZDkx9dqtsMsFUHMVZfj38s" download><i class="fa-solid fa-download"></i> Download Resume</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#edu-certs">Education</a></li>
@@ -389,7 +393,10 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <button class="hamburger" id="ham"><i class="fa-solid fa-bars"></i></button>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <a href="https://drive.google.com/uc?export=download&id=14yehXItlTRZDkx9dqtsMsFUHMVZfj38s" download class="nav-dl-mobile"><i class="fa-solid fa-download"></i></a>
+    <button class="hamburger" id="ham"><i class="fa-solid fa-bars"></i></button>
+  </div>
 </nav>
 
 <div class="page">
